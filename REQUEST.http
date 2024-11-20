@@ -1,0 +1,27 @@
+// All posts
+
+get http://localhost:8000/api/posts
+###
+// Create new post
+post http://localhost:8000/api/posts
+Content-Type: application/json
+
+{
+  "title": "Post 02",
+  "body": "This a content post"
+}
+###
+// Get a post
+get http://localhost:8000/api/posts/1
+###
+// Update a post
+put http://localhost:8000/api/posts/2
+Content-Type: application/json
+
+{
+  "title": "Post 02 updated",
+  "body": "This a content post"
+}
+###
+delete http://localhost:8000/api/posts/2
+
