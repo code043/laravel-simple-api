@@ -24,7 +24,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
         $validate = $request->validate([
             'title' => 'required|max:255',
@@ -52,7 +52,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        
+        $validate = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ]);
+        $post->update($validate);
+        return response()->json([
+            'message' => 'Post has updated',
+            'post' => $post
+        ], 200);
     }
 
     /**
