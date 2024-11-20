@@ -24,4 +24,22 @@ Content-Type: application/json
 }
 ###
 delete http://localhost:8000/api/posts/2
+###
+// Auth
+post http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+  "name": "John",
+  "email": "john3@gmail.com",
+  "password": "12345",
+  "passoword_confirmation": "12345"
+}
+###
+post http://localhost:8000/api/login
+###
+post http://localhost:8000/api/logout
+###
+
+
 
