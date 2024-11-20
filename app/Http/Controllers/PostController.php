@@ -13,7 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $posts = Post::all();
+        return response()->json([
+            'quantity' => count($posts),
+            "posts" => $posts
+        ], 200);
     }
 
     /**
@@ -29,7 +33,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->json([
+            'post' => $post
+        ], 200);
     }
 
     /**
