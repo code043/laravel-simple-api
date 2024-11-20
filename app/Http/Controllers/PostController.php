@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -25,7 +26,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $validate = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ]);
+        $post = Post::create($validate);
+        return response()->json([
+            'message' => 'Post has created',
+            'post' => $post
+        ], 201);
     }
 
     /**
@@ -41,9 +50,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //
+        
     }
 
     /**
