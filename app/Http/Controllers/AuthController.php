@@ -39,7 +39,13 @@ class AuthController extends Controller
             'token' => $token->plainTextToken
         ]);
     }
-    public function logout(){
-        return 'logout';
+    public function logout(Request $request){
+        $user_logged = $request->user();
+        if(!$user_logged){
+            dd($request);
+            return response()->json(['message' => 'Error']);
+        }
+        $user_logged->tokens()->delete();
+        return response()->json(['message' => 'You was logged out']);
     }
 }
