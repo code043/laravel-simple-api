@@ -6,9 +6,18 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PostController extends Controller
+class PostController extends Controller implements HasMiddleware
 {
+    public static function middleware(){
+        return [
+            new Middleware('auth:sanctum', except: [
+                'index', 'show'
+            ])
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +39,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'body' => 'required'
         ]);
-        $post = Post::create($validate);
+        $post = $request->user()->create($validate);
         return response()->json([
             'message' => 'Post has created',
             'post' => $post
