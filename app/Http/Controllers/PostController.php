@@ -18,9 +18,7 @@ class PostController extends Controller implements HasMiddleware
             ])
         ];
     }
-    /**
-     * Display a listing of the resource.
-     */
+  
     public function index()
     {
         $posts = Post::all();
@@ -30,9 +28,7 @@ class PostController extends Controller implements HasMiddleware
         ], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         $validate = $request->validate([
@@ -46,9 +42,6 @@ class PostController extends Controller implements HasMiddleware
         ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Post $post)
     {
         return response()->json([
@@ -56,9 +49,7 @@ class PostController extends Controller implements HasMiddleware
         ], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, Post $post)
     {
         $validate = $request->validate([
@@ -72,9 +63,7 @@ class PostController extends Controller implements HasMiddleware
         ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy(Post $post)
     {
         $post->delete($post);
